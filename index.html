@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Generator & Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f4f8;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        #otp {
+            font-size: 2em;
+            margin: 20px;
+            color: #2e86de;
+        }
+        
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+            margin: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2e86de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        button:hover {
+            background-color: #1e5fab;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>OTP Generator & Verifier</h1>
+
+    <div id="otp">------</div>
+    <button onclick="generateOTP()">Generate OTP</button>
+
+    <br><br>
+    <input type="text" id="otpInput" placeholder="Enter OTP" maxlength="6" />
+    <button onclick="verifyOTP()">Verify OTP</button>
+
+    <div id="result"></div>
+
+    <script>
+        let generatedOTP = "";
+
+        function generateOTP() {
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById("otp").textContent = generatedOTP;
+            document.getElementById("result").textContent = "";
+            document.getElementById("otpInput").value = "";
+        }
+
+        function verifyOTP() {
+            const enteredOTP = document.getElementById("otpInput").value;
+            const result = document.getElementById("result");
+
+            if (enteredOTP === generatedOTP) {
+                result.textContent = "✅ Successfully Done!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "❌ Invalid OTP!";
+                result.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
